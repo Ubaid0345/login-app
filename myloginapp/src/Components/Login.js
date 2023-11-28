@@ -7,10 +7,10 @@ export default function Login(props) {
         <article className='card-body mx-auto' style={{ width: "500px" }}>
           <h4 className='card-title mt-3 text-center'>Login</h4>
           <p>
-            <a href='' className='btn btn-block btn-twitter'>
+            <a className='btn btn-block btn-twitter'>
               <i className='fa fa-twitter'></i> Login via Twitter
             </a>
-            <a href='' className='btn btn-block btn-facebook'>
+            <a className='btn btn-block btn-facebook'>
               <i className='fa fa-facebook'></i> Login via Facebook
             </a>
           </p>

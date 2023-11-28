@@ -22,13 +22,13 @@ function createaccount(){
                     <p className='text-center'>Get started with your free account</p>
                     <p className={messageClass.join(" ")}>{props.message} </p>
                     <p>
-                        <a href='' className='btn btn-block btn-twitter'>
+                        <a className='btn btn-block btn-twitter'>
                             <i className='fa fa-twitter'></i> Login via Twitter
                         </a>
-                        <a href='' className='btn btn-block btn-facebook'>
+                        <a className='btn btn-block btn-facebook'>
                             <i className='fa fa-facebook'></i> Login via Facebook
                         </a>
-                        <a href='' className='btn btn-block btn-google'>
+                        <a className='btn btn-block btn-google'>
                             <i className='fa fa-google'></i> Login via Google
                         </a>
                     </p>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Register from  './Components/Register.js';
-import Login from './Components/Login.js'
+import Login from './Components/Login.js';
 // import { initializeApp } from 'firebase/app';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
 import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
