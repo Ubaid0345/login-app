@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Register from  './Components/Register.js';
 import Login from './Components/Login.js'
-import { initializeApp } from 'firebase/app';
+// import { initializeApp } from 'firebase/app';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
+import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import firebase from 'firebase';
+// import firebase from 'firebase';
 const firebaseConfig = {
   apiKey: "AIzaSyAbz7Xp84As50mztZToNrr8IBPLYveBPWc",
   authDomain: "my-login-app-25f5e.firebaseapp.com",
@@ -15,9 +17,9 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 
-if(!firebase.app.length < 0){
-  firebase.initializeApp(firebaseConfig);
-}
+// if(!firebase.app.length < 0){
+//   firebase.initializeApp(firebaseConfig);
+// }
 
 class App extends Component{
   constructor(props) {
@@ -44,9 +46,8 @@ class App extends Component{
       this.setState({message: "psddword does not match", type:0})
       return;
     }
-    const auth = firebase.auth();
-    createUserWithEmailAndPassword(auth, email, password);
-    then((data) =>{
+    const auth = getAuth(app);
+    createUserWithEmailAndPassword(auth, email, password).then((data) =>{
       console.log(data);
     }).catch((error) =>{
       console.log(error);

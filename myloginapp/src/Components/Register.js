@@ -2,6 +2,11 @@ import React from 'react';
 import "./Register.css";
 
 export default function Register(props) {
+function createaccount(){
+    console.log("Registration");
+}
+
+
     let messageClass = ["text-center"];
     if(props.type){
         messageClass.push = ("text-success");
@@ -56,7 +61,7 @@ export default function Register(props) {
                             <input name='confirmPassword' className='form-control' placeholder='Repeat password' type='password' />
                         </div>
                         <div className='form-group'>
-                            <button type='submit' className='btn btn-primary btn-block'>
+                            <button onClick={createaccount} type='submit' className='btn btn-primary btn-block'>
                                 Create Account
                             </button>
                         </div>
