@@ -48,9 +48,13 @@ class App extends Component {
     }
     const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password).then((data) => {
-      console.log(data);
+      this.setState({message:"Register successfully", type:1},()=>{
+        event.target.email.value = "";
+        event.target.password.value = "";
+        event.target.confirmPassword.value = "";
+      })
     }).catch((error) => {
-      console.log(error);
+      this.setState({message: error.message, type:0})
     });
 
   }
