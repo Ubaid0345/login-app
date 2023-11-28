@@ -29,7 +29,7 @@ export default function Register(props) {
                         </a>
                         <a href='' className='btn btn-block btn-google'>
                             <i className='fa fa-google'></i> Login via Google
-                        </button>
+                        </a>
                     </p>
                     <p className='divider-text'>
                         <span className='bg-light'>OR</span>
