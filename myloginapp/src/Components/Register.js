@@ -2,18 +2,17 @@ import React from 'react';
 import "./Register.css";
 
 export default function Register(props) {
-function createaccount(){
-    console.log("Registration");
-}
-
+    function createAccount() {
+        console.log("Registration");
+    }
 
     let messageClass = ["text-center"];
-    if(props.type){
-        messageClass.push = ("text-success");
+    if (props.type) {
+        messageClass.push("text-success");
+    } else {
+        messageClass.push("text-danger");
     }
-    else{
-        messageClass.push = ("text-danger");
-    }
+
     return (
         <div className='container'>
             <div className='card bg-light'>
@@ -22,15 +21,15 @@ function createaccount(){
                     <p className='text-center'>Get started with your free account</p>
                     <p className={messageClass.join(" ")}>{props.message} </p>
                     <p>
-                        <a className='btn btn-block btn-twitter'>
+                        <a href='' className='btn btn-block btn-twitter'>
                             <i className='fa fa-twitter'></i> Login via Twitter
                         </a>
-                        <a className='btn btn-block btn-facebook'>
+                        <a href='' className='btn btn-block btn-facebook'>
                             <i className='fa fa-facebook'></i> Login via Facebook
                         </a>
-                        <a className='btn btn-block btn-google'>
+                        <a href='' className='btn btn-block btn-google'>
                             <i className='fa fa-google'></i> Login via Google
-                        </a>
+                        </button>
                     </p>
                     <p className='divider-text'>
                         <span className='bg-light'>OR</span>
@@ -50,7 +49,7 @@ function createaccount(){
                                     <i className='fa fa-lock'></i>
                                 </span>
                             </div>
-                            <input name='password' className='form-control' placeholder='password' type='password' />
+                            <input name='password' className='form-control' placeholder='Password' type='password' />
                         </div>
                         <div className='form-group input-group'>
                             <div className='input-group-prepend'>
@@ -61,12 +60,12 @@ function createaccount(){
                             <input name='confirmPassword' className='form-control' placeholder='Repeat password' type='password' />
                         </div>
                         <div className='form-group'>
-                            <button onClick={createaccount} type='submit' className='btn btn-primary btn-block'>
+                            <button onClick={createAccount} type='submit' className='btn btn-primary btn-block'>
                                 Create Account
                             </button>
                         </div>
                         <p className='text-center'>
-                            Have an account <a href='#' onClick={props.switch}>Log in</a>
+                            Have an account <button onClick={props.switch} className='btn-like-link'>Log in</button>
                         </p>
                     </form>
                 </article>
