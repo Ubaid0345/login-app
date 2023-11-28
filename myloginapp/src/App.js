@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Register from  './Components/Register.js';
+import Register from './Components/Register.js';
 import Login from './Components/Login.js'
 // import { initializeApp } from 'firebase/app';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
@@ -21,47 +21,47 @@ const app = initializeApp(firebaseConfig);
 //   firebase.initializeApp(firebaseConfig);
 // }
 
-class App extends Component{
+class App extends Component {
   constructor(props) {
     super(props)
-  
+
     this.state = {
-       page:1,
-       message:"",
-       type:1,
+      page: 1,
+      message: "",
+      type: 1,
     };
   }
 
-  pageSwitchHandler = (event) =>{
-    this.setState({page : !this.state.page})
+  pageSwitchHandler = (event) => {
+    this.setState({ page: !this.state.page })
     event.preventDefault();
   }
 
   registrationHandler = (event) => {
-  event.preventDefault();
+    event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-    const confirmPassword = event.target.email.value;
-    if(password !== confirmPassword){
-      this.setState({message: "psddword does not match", type:0})
+    const confirmPassword = event.target.confirmPassword.value;
+    if (password !== confirmPassword) {
+      this.setState({ message: "psddword does not match", type: 0 })
       return;
     }
     const auth = getAuth(app);
-    createUserWithEmailAndPassword(auth, email, password).then((data) =>{
+    createUserWithEmailAndPassword(auth, email, password).then((data) => {
       console.log(data);
-    }).catch((error) =>{
+    }).catch((error) => {
       console.log(error);
     });
 
   }
-  
-  render(){
-    return(
+
+  render() {
+    return (
 
       <div>
-        {this.state.page ? 
-        <Register type={this.state.type} message={this.state.message} switch={this.pageSwitchHandler} register={this.registrationHandler} /> :
-        <Login switch={this.pageSwitchHandler} />
+        {this.state.page ?
+          <Register type={this.state.type} message={this.state.message} switch={this.pageSwitchHandler} register={this.registrationHandler} /> :
+          <Login switch={this.pageSwitchHandler} />
         }
       </div>
     )
