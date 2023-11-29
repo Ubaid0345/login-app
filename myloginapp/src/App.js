@@ -3,8 +3,7 @@ import Register from  './Components/Register.js';
 import Login from './Components/Login.js'
 // import { initializeApp } from 'firebase/app';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
 // import firebase from 'firebase';
 const firebaseConfig = {
   apiKey: "AIzaSyAbz7Xp84As50mztZToNrr8IBPLYveBPWc",
@@ -16,6 +15,8 @@ const firebaseConfig = {
   appId: "1:918779165819:web:8078d9e886bda4c833b6de"
 };
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
 
 // if(!firebase.app.length < 0){
 //   firebase.initializeApp(firebaseConfig);
@@ -33,7 +34,7 @@ class App extends Component {
   }
 
   pageSwitchHandler = (event) => {
-    this.setState({ page: !this.state.page })
+    this.setState({ page: !this.state.page, message:null, type:null })
     event.preventDefault();
   }
 
@@ -46,8 +47,9 @@ class App extends Component {
       this.setState({ message: "psddword does not match", type: 0 })
       return;
     }
-    const auth = getAuth(app);
+    // const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password).then((data) => {
+      // sendSignInLinkToEmail(auth, email) 
       this.setState({message:"Register successfully", type:1},()=>{
         event.target.email.value = "";
         event.target.password.value = "";
@@ -56,7 +58,30 @@ class App extends Component {
     }).catch((error) => {
       this.setState({message: error.message, type:0})
     });
+  };
 
+  // googleLoginHandler = () => {
+  //   alert();
+  // }
+
+  loginHandler = (event) =>{
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    signInWithEmailAndPassword(auth, email, password).then((data)=>{
+      console.log(data);
+      if(data.user.emailVerified === true){
+        this.setState({message: "login successfull", type:1})
+      }
+      else{
+        this.setState({message: "email is not verified", type:0})
+      }
+
+    }).catch((error)=>{
+      console.log(error)
+      this.setState({message: error.message, type:0})
+
+    })
   }
 
   render() {
@@ -64,8 +89,8 @@ class App extends Component {
 
       <div>
         {this.state.page ?
-          <Register type={this.state.type} message={this.state.message} switch={this.pageSwitchHandler} register={this.registrationHandler} /> :
-          <Login switch={this.pageSwitchHandler} />
+          <Register type={this.state.type} message={this.state.message} switch={this.pageSwitchHandler} register={this.registrationHandler} google={this.googleLoginHandler} /> :
+          <Login type={this.state.type} message={this.state.message} switch={this.pageSwitchHandler} login={this.loginHandler} />
         }
       </div>
     )
