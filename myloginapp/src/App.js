@@ -3,7 +3,7 @@ import Register from  './Components/Register.js';
 import Login from './Components/Login.js'
 // import { initializeApp } from 'firebase/app';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js'
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js'
 // import firebase from 'firebase';
 const firebaseConfig = {
   apiKey: "AIzaSyAbz7Xp84As50mztZToNrr8IBPLYveBPWc",
@@ -49,7 +49,6 @@ class App extends Component {
     }
     // const auth = getAuth(app);
     createUserWithEmailAndPassword(auth, email, password).then((data) => {
-      // sendSignInLinkToEmail(auth, email) 
       this.setState({message:"Register successfully", type:1},()=>{
         event.target.email.value = "";
         event.target.password.value = "";
@@ -60,9 +59,16 @@ class App extends Component {
     });
   };
 
-  // googleLoginHandler = () => {
-  //   alert();
-  // }
+  googleLoginHandler = (event) => {
+    event.preventDefault();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).then((response) =>{
+      console.log(response.user)
+    }).catch((reject) =>{
+      console.log(reject)
+    })
+    alert();
+  }
 
   loginHandler = (event) =>{
     event.preventDefault();

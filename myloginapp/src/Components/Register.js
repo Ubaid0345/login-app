@@ -21,15 +21,15 @@ export default function Register(props) {
                     <p className='text-center'>Get started with your free account</p>
                     <p className={messageClass.join(" ")}>{props.message} </p>
                     <p>
-                        <link href='' className='btn btn-block btn-twitter'>
+                        <a href='' className='btn btn-block btn-twitter'>
                             <i className='fa fa-twitter'></i> Login via Twitter
-                        </link>
-                        <link href='' className='btn btn-block btn-facebook'>
+                        </a>
+                        <a href='' className='btn btn-block btn-facebook'>
                             <i className='fa fa-facebook'></i> Login via Facebook
-                        </link>
-                        <link href='' onClick={props.google} className='btn btn-block btn-google'>
+                        </a>
+                        <a href='' onClick={props.google} className='btn btn-block btn-google'>
                             <i className='fa fa-google'></i> Login via Google
-                        </link>
+                        </a>
                     </p>
                     <p className='divider-text'>
                         <span className='bg-light'>OR</span>
